@@ -15,7 +15,7 @@ bool binSearch(vector<int> a, int x) {
     return false;
 }
 bool searchMatrix(vector< vector<int> >& matrix, int target) {
-    
+
     vector<int> v;
     vector< vector<int> >::iterator i;
     vector<int>::iterator j;
