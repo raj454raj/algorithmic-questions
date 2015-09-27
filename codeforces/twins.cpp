@@ -21,7 +21,7 @@ int main()
 	i=0;
 	int tmpsum1=0,tmpsum2=0;
 	while(1)
-	{	
+	{
 		if(tmpsum1>tmpsum2)
 			break;
 		tmpsum1+=a[i];
