@@ -1,0 +1,18 @@
+#include<bits/stdc++.h>
+#define ll long long int
+using namespace std;
+int main() {
+    int n, x;
+    scanf("%d", &n);
+    priority_queue<pair<int, int>> p;
+    for(int i = 0 ; i < n ; ++i) {
+        scanf("%d", &x);
+        p.push(make_pair(x, i));
+    }
+    while(!p.empty()) {
+        cout << p.top().first << " ";
+        p.pop();
+    }
+    return 0;
+}
+

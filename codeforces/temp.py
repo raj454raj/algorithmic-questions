@@ -1,7 +1,6 @@
-l = []
-for i in xrange(1000001):
-    j = str(i)
-    if j.count('0') + j.count('1') == len(j):
-        l.append(i)
-
-print len(l)
+import random
+n = random.randint(1, 10000)
+print n
+for i in xrange(n):
+    x = random.randint(1, 1000000)
+    print x,
