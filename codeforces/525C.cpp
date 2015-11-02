@@ -3,52 +3,47 @@
 using namespace std;
 int main() {
     ll n, x;
-    cin >> n;
+    scanf("%I64d", &n);
     ll m = 0, mi=LONG_MAX;
     ll count[1000002] = {0};
 
     for(int i = 0 ; i < n ; ++i) {
-        cin >> x;
+        scanf("%I64d", &x);
         count[x]++;
         m = max(m, x);
         mi = min(mi, x);
     }
-    for(int i = m ; i >= mi - 1 ; --i) {
+    for(int i = m ; i >= mi ; i--) {
         if(count[i]&1) {
-            if(count[i - 1] != 0) {
+            count[i]--;
+            if(count[i - 1])
                 count[i - 1]++;
-                count[i]--;
-            }
         }
     }
+    int state = 1;
     ll area = 0;
-    int prev = 0, pno = 0;
-    for(int i = m ; i >= 1 ; --i) {
-        if(count[i] == 0)
-            continue;
-        if(!prev && count[i] >= 4) {
-            area += (ll)(count[i] / 4) * (ll)i * (ll)i;
-            count[i] = count[i] % 4;
-            prev = count[i];
-            pno = i;
-        }
-        else if(prev >= 2) {
-            if(count[i] >= 2) {
-                area += (ll)pno * (ll)i;
-                count[i] -= 2;
+    ll prev;
+    for(int i = m ; i >= mi ; i--) {
+        if(state == 1) {
+            area += (count[i] / 4) * i * i;
+            if(count[i] % 4 == 2) {
+                state = 2;
+                prev = i;
             }
-            area += (ll)(count[i] / 4) * (ll)i * (ll)i;
-            count[i] = count[i] % 4;
-            prev = count[i];
-            pno = i;
         }
-        else if(count[i] >= 2){
-            count[i] = count[i] % 4;
-            prev = count[i];
-            pno = i;
+        else {
+            if(count[i] >= 2) {
+                area += i * prev;
+                count[i] -= 2;
+                state = 1;
+            }
+            area += (count[i] / 4) * i * i;
+            if(count[i] % 4 == 2) {
+                state = 2;
+                prev = i;
+            }
         }
     }
     cout << area;
     return 0;
 }
-

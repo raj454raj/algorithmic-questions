@@ -4,7 +4,7 @@ using namespace std;
 bool comp(pair<string, int> a, pair<string, int> b) {
     return a.first < b.first;
 }
-vector<vector<string> > groupAnagrams(vector<string>& strs) {
+vector<vector<string> > groupAnagramsold(vector<string>& strs) {
     vector< vector<string> > res;
     if(strs.size() < 1)
         return res;
@@ -30,6 +30,54 @@ vector<vector<string> > groupAnagrams(vector<string>& strs) {
     }
     res.push_back(tmp);
     return res;
+}
+
+vector<vector<string> > groupAnagrams(vector<string>& strs) {
+
+    map<string, int> m;
+
+    vector<vector<string> > v;
+
+    string tmp;
+
+    map<string, int>::iterator it;
+
+    int index = 0;
+
+    vector<string> t;
+
+    for(int i = 0 ; i < strs.size() ; ++i) {
+
+        tmp = strs[i];
+
+        sort(tmp.begin(), tmp.end());
+
+        it = m.find(tmp);
+
+        if(it != m.end()) {
+
+            v[m[tmp]].push_back(strs[i]);
+
+        }
+
+        else {
+
+            m[tmp] = index++;
+
+            t.push_back(strs[i]);
+
+            v.push_back(t);
+
+            t.clear();
+
+        }
+
+    }
+
+return v;
+
+
+
 }
 int main() {
     vector<string> t;
