@@ -1,0 +1,10 @@
+Case #1: GOOD
+Case #2: BAD
+Case #3: GOOD
+Case #4: BAD
+Case #5: GOOD
+Case #6: GOOD
+Case #7: BAD
+Case #8: BAD
+Case #9: GOOD
+Case #10: BAD
